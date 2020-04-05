@@ -1,5 +1,12 @@
-var context;
-var arr = [];
+// Initialize audio context.
+var AudioContext = window.AudioContext || window.webkitAudioContext;
+var context = new AudioContext();
+
+// Prepare the array with samples.
+var arr = [], volume = 0.2, seconds = 0.5, tone = 441;
+for (var i = 0; i < context.sampleRate * seconds; i++) {
+    arr[i] = sineWaveAt(i, tone) * volume
+}
 
 function playSound(arr) {
     // Make a "buffer" object
@@ -21,21 +28,6 @@ function sineWaveAt(sampleNumber, tone) {
     return Math.sin(sampleNumber / (sampleFreq / (Math.PI*2)))
 }
 
-function doLoad() {
-    console.log("Loading...");
-
-    // Initialize audio context.
-    var AudioContext = window.AudioContext || window.webkitAudioContext;
-    context = new AudioContext();
-
-    // Prepare the array with samples.
-    var volume = 0.2, seconds = 0.5, tone = 441;
-    for (var i = 0; i < context.sampleRate * seconds; i++) {
-        arr[i] = sineWaveAt(i, tone) * volume
-    }
-
-    console.log("Loaded");
-}
 
 function doClick() {
     console.log("Clicked");
