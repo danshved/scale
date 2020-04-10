@@ -3,9 +3,9 @@ var context = new AudioContext();
 var oscillator = null;
 
 
-// Parameters of the bell curve to modulate the sine waves.
-var midFrequency = 349.2282; // F#
-var sigma = 1.5; // In octaves
+// Parameters of the curve to modulate the sine waves.
+var midFrequency = 349.2282;  // F#, roughly in the middle of the keyboard.
+var sigma = 1.5;  // In octaves
 
 // How many frequencies to include in the tone. The distance between the lowest
 // and the highest frequency will be (harmonicsCount - 1) octaves.
@@ -26,14 +26,21 @@ function createSheppardOscillator(index) {
         var frequencyIndex = 1 << i;
         var frequency = bottomFrequency * frequencyIndex;
 
-        // Cut out everything outside the audible range. This also technically assures that
-        // The wave is the same when bottomFrequency is 440 / 2^6 and 440 / 2^5.
+        // Cut out everything outside the audible range. This also technically
+        // assures that the wave is the same when bottomFrequency is 440 / 2^6
+        // and 440 / 2^5.
         if (frequency < bottomFrequency || frequency > topFrequency) {
             continue;
         }
 
         var delta = (Math.log(frequency) - Math.log(midFrequency)) / Math.log(2);
-        real[frequencyIndex] = Math.exp(-delta*delta / (sigma * sigma));
+//        real[frequencyIndex] = Math.exp(-delta*delta / (sigma * sigma));
+        imag[frequencyIndex] = Math.exp(-delta*delta / (sigma * sigma));
+//        var x = delta / sigma;
+//        if (x > -1.0 && x < 1.0) {
+//            real[frequencyIndex] = Math.max(0, Math.cos(x * Math.PI / 2.0))
+//        }
+
     }
 
     var wave = context.createPeriodicWave(real, imag);
@@ -52,7 +59,6 @@ function createSheppardOscillator(index) {
 // 11 = Ab
 // 12 = A
 function play(index) {
-    console.log("Clicked Play");
     if (oscillator === null) {
         oscillator = createSheppardOscillator(index);
         oscillator.connect(context.destination);
@@ -61,7 +67,6 @@ function play(index) {
 }
 
 function stop() {
-    console.log("Clicked Stop");
     if (oscillator !== null) {
         oscillator.stop();
         oscillator.disconnect();
