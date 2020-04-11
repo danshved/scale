@@ -3,24 +3,42 @@
         <title>Shepard scale</title>
         <script src="main.js"></script>
         <script type="text/javascript">
-            var shift = Math.floor(Math.random() * 12);
+            var shift12 = Math.floor(Math.random() * 12);
+            var shift2 = Math.floor(Math.random() * 2);
+            var shift3 = Math.floor(Math.random() * 3);
         </script>
     </head>
     <body>
+        <p>Full chromatic scale, starting at a random place.</p>
         <div>
-            <button type="button" onmousedown="play(shift + 0);" onmouseup="stop();" onmouseleave="stop();">X</button>
-            <button type="button" onmousedown="play(shift + 1);" onmouseup="stop();" onmouseleave="stop();">X</button>
-            <button type="button" onmousedown="play(shift + 2);" onmouseup="stop();" onmouseleave="stop();">X</button>
-            <button type="button" onmousedown="play(shift + 3);" onmouseup="stop();" onmouseleave="stop();">X</button>
-            <button type="button" onmousedown="play(shift + 4);" onmouseup="stop();" onmouseleave="stop();">X</button>
-            <button type="button" onmousedown="play(shift + 5);" onmouseup="stop();" onmouseleave="stop();">X</button>
-            <button type="button" onmousedown="play(shift + 6);" onmouseup="stop();" onmouseleave="stop();">X</button>
-            <button type="button" onmousedown="play(shift + 7);" onmouseup="stop();" onmouseleave="stop();">X</button>
-            <button type="button" onmousedown="play(shift + 8);" onmouseup="stop();" onmouseleave="stop();">X</button>
-            <button type="button" onmousedown="play(shift + 9);" onmouseup="stop();" onmouseleave="stop();">X</button>
-            <button type="button" onmousedown="play(shift + 10);" onmouseup="stop();" onmouseleave="stop();">X</button>
-            <button type="button" onmousedown="play(shift + 11);" onmouseup="stop();" onmouseleave="stop();">X</button>
-            <button type="button" onmousedown="play(shift + 12);" onmouseup="stop();" onmouseleave="stop();">X</button>
+            <button type="button" onmousedown="play(shift12 + 0);" onmouseup="stop();" onmouseleave="stop();">X</button>
+            <button type="button" onmousedown="play(shift12 + 1);" onmouseup="stop();" onmouseleave="stop();">X</button>
+            <button type="button" onmousedown="play(shift12 + 2);" onmouseup="stop();" onmouseleave="stop();">X</button>
+            <button type="button" onmousedown="play(shift12 + 3);" onmouseup="stop();" onmouseleave="stop();">X</button>
+            <button type="button" onmousedown="play(shift12 + 4);" onmouseup="stop();" onmouseleave="stop();">X</button>
+            <button type="button" onmousedown="play(shift12 + 5);" onmouseup="stop();" onmouseleave="stop();">X</button>
+            <button type="button" onmousedown="play(shift12 + 6);" onmouseup="stop();" onmouseleave="stop();">X</button>
+            <button type="button" onmousedown="play(shift12 + 7);" onmouseup="stop();" onmouseleave="stop();">X</button>
+            <button type="button" onmousedown="play(shift12 + 8);" onmouseup="stop();" onmouseleave="stop();">X</button>
+            <button type="button" onmousedown="play(shift12 + 9);" onmouseup="stop();" onmouseleave="stop();">X</button>
+            <button type="button" onmousedown="play(shift12 + 10);" onmouseup="stop();" onmouseleave="stop();">X</button>
+            <button type="button" onmousedown="play(shift12 + 11);" onmouseup="stop();" onmouseleave="stop();">X</button>
+            <button type="button" onmousedown="play(shift12 + 12);" onmouseup="stop();" onmouseleave="stop();">X</button>
+        </div>
+
+        <p>Notes D and G#, starting at a random place.</p>
+        <!-- D is 5, G# is 11 -->
+        <div>
+            <button type="button" onmousedown="play(6 * (shift2 + 0) + 5);" onmouseup="stop();" onmouseleave="stop();">X</button>
+            <button type="button" onmousedown="play(6 * (shift2 + 1) + 5);" onmouseup="stop();" onmouseleave="stop();">X</button>
+        </div>
+
+        <p>Notes C, E, and G#, starting at a random place.</p>
+        <!-- C is 3, E is 7, G# is 11 -->
+        <div>
+            <button type="button" onmousedown="play(4 * (shift3 + 0) + 3);" onmouseup="stop();" onmouseleave="stop();">X</button>
+            <button type="button" onmousedown="play(4 * (shift3 + 1) + 3);" onmouseup="stop();" onmouseleave="stop();">X</button>
+            <button type="button" onmousedown="play(4 * (shift3 + 2) + 3);" onmouseup="stop();" onmouseleave="stop();">X</button>
         </div>
     </body>
 </html>
