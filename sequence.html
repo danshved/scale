@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Shepard scale</title>
+        <style>
+            .note {
+                width: 40px;
+                height: 30px;
+            }
+            .note-label {
+                height: 30px;
+            }
+        </style>
+        <script src="main.js"></script>
+        <script type="text/javascript">
+            function addRandomNote(index) {
+                var note = Math.floor(Math.random() * 12);
+                var element = document.createElement("div");
+
+                element.innerHTML =
+                    "<button class='note' type='button' onmousedown='play(" + note + ");' onmouseup='stop();' onmouseleave='stop();'>" + (index + 1) + "</button>" +
+                    "<input class='note-label' type='text'></input>";
+                document.getElementById("sequence").appendChild(element);
+            }
+            function initialize() {
+                for(var i = 0; i < 100; ++i) {
+                    addRandomNote(i);
+                }
+            }
+        </script>
+    </head>
+    <body onload="initialize();">
+        <div id = "sequence">
+        </div>
+    </body>
+</html>
