@@ -12,8 +12,24 @@
         </style>
         <script src="main.js"></script>
         <script type="text/javascript">
-            function addRandomNote(index) {
-                var note = Math.floor(Math.random() * 12);
+            function getNoteCount() {
+                var default_result = 12;
+
+                // Get URL parameter.
+                var url = new URL(window.location.href);
+                var valueString = url.searchParams.get("notes");
+                if (valueString === null) {
+                    return default_result;
+                }
+
+                // Parse URL parameter.
+                var valueInt = Number.parseInt(valueString);
+                if (Number.isNaN(valueInt) || valueInt < 1 || valueInt > 12 || (12 % valueInt != 0)) {
+                    return default_result;
+                }
+                return valueInt;
+            }
+            function addNoteButton(index, note) {
                 var element = document.createElement("div");
 
                 element.innerHTML =
@@ -21,15 +37,20 @@
                     "<input class='note-label' type='text'></input>";
                 document.getElementById("sequence").appendChild(element);
             }
+
             function initialize() {
+                var noteCount = getNoteCount();
+                document.getElementById("header").innerHTML="Using " + getNoteCount() + " notes";
+
                 for(var i = 0; i < 100; ++i) {
-                    addRandomNote(i);
+                    // Pick random notes spaced equally. Use C (value "3") as a starting point.
+                    addNoteButton(i, Math.floor(Math.random() * noteCount) * (12 / noteCount) + 3);
                 }
             }
         </script>
     </head>
     <body onload="initialize();">
-        <div id = "sequence">
-        </div>
+        <div id = "header"></div>
+        <div id = "sequence"></div>
     </body>
 </html>
