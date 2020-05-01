@@ -1,0 +1,13 @@
+.note-button {
+    width: 40px;
+    height: 30px;
+}
+.note-label {
+    height: 30px;
+    margin-right: 10px;
+}
+.note-span {
+}
+.row-div {
+    white-space: nowrap;
+}
