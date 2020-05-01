@@ -2,12 +2,18 @@
     <head>
         <title>Shepard scale</title>
         <style>
-            .note {
+            .note-button {
                 width: 40px;
                 height: 30px;
             }
             .note-label {
                 height: 30px;
+                margin-right: 10px;
+            }
+            .note-span {
+            }
+            .row-div {
+                white-space: nowrap;
             }
         </style>
         <script src="main.js"></script>
@@ -29,22 +35,31 @@
                 }
                 return valueInt;
             }
-            function addNoteButton(index, note) {
-                var element = document.createElement("div");
-
-                element.innerHTML =
-                    "<button class='note' type='button' onmousedown='play(" + note + ");' onmouseup='stop();' onmouseleave='stop();'>" + (index + 1) + "</button>" +
+            function createNoteButton(index, note) {
+                var noteSpan = document.createElement("span");
+                noteSpan.setAttribute('class', 'note-span');
+                noteSpan.innerHTML =
+                    "<button class='note-button' type='button' onmousedown='play(" + note + ");' onmouseup='stop();' onmouseleave='stop();'>" + (index + 1) + "</button>" +
                     "<input class='note-label' type='text'></input>";
-                document.getElementById("sequence").appendChild(element);
+                return noteSpan;
             }
 
             function initialize() {
                 var noteCount = getNoteCount();
                 document.getElementById("header").innerHTML="Using " + getNoteCount() + " notes";
 
-                for(var i = 0; i < 100; ++i) {
-                    // Pick random notes spaced equally. Use C (value "3") as a starting point.
-                    addNoteButton(i, Math.floor(Math.random() * noteCount) * (12 / noteCount) + 3);
+                var sequence = document.getElementById("sequence");
+                for (var row = 0; row < 25; ++row) {
+                    var rowDiv = document.createElement("div");
+                    rowDiv.setAttribute('class', 'row-div');
+                    for (var col = 0; col < 4; ++col) {
+                        // Pick random notes spaced equally. Use C (value "3") as a starting point.
+                        var note = Math.floor(Math.random() * noteCount) * (12 / noteCount) + 3;
+                        var index = 25 * col + row;
+                        var button = createNoteButton(index, note);
+                        rowDiv.appendChild(button);
+                    }
+                    sequence.appendChild(rowDiv);
                 }
             }
         </script>
