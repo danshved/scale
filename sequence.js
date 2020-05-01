@@ -51,7 +51,7 @@ function createNoteButton(index, note) {
 
 function initialize() {
     var noteCount = getNoteCount();
-    document.getElementById("header").innerHTML="Using " + getNoteCount() + " notes";
+    document.getElementById("header").innerHTML="Using " + noteCount + " notes";
 
     var sequence = document.getElementById("sequence");
     var rowCount = 25;
