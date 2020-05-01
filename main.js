@@ -66,12 +66,15 @@ function play(index) {
     }
 }
 
+// Returns true if there was a sound playing.
 function stop() {
     if (oscillator !== null) {
         oscillator.stop();
         oscillator.disconnect();
         oscillator = null;
+        return true;
     }
+    return false;
 }
 
 // TODO: add gain node (right now it is too loud).
