@@ -5,13 +5,13 @@ var oscillator = null;
 
 // Parameters of the curve to modulate the sine waves.
 var midFrequency = 349.2282;  // F#, roughly in the middle of the keyboard.
-var sigma = 1.5;  // In octaves
+var sigma = 2.0;  // In octaves
 
 // How many frequencies to include in the tone. The distance between the lowest
 // and the highest frequency will be (harmonicsCount - 1) octaves.
 var harmonicsCount = 13;
-var bottomFrequency = 20;
-var topFrequency = 20000;
+var lowerLimitFrequency = 20;
+var upperLimitFrequency = 20000;
 
 function createSheppardOscillator(index) {
     // Create a periodic wave.
@@ -29,7 +29,7 @@ function createSheppardOscillator(index) {
         // Cut out everything outside the audible range. This also technically
         // assures that the wave is the same when bottomFrequency is 440 / 2^6
         // and 440 / 2^5.
-        if (frequency < bottomFrequency || frequency > topFrequency) {
+        if (frequency < lowerLimitFrequency || frequency > upperLimitFrequency) {
             continue;
         }
 
